@@ -1,4 +1,4 @@
-function getBackend() {
+function getTicket() {
     var requestOptions = {
         method: 'GET',
         redirect: 'follow'
@@ -27,42 +27,21 @@ function displayTickets(tickets) {
     tableBody.innerHTML = '';
 
     tickets.forEach(ticket => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <div class="card">
-                <img class="w-full h-full object-cover" src="https://source.unsplash.com/360x200?concert" alt="">
-                <div class="p-5 flex flex-col gap-3">
-                    <div class="flex item-center gap-2">
-                        <span class="badge">Stock Ready</span>
-                        <span class="badge">Official Store</span>
-                    </div>
-                    <h2 class="product-title" title="${ticket}">
-                        ${ticket.title}
-                    </h2>
-                    <div>
-                        <span class="text-xl font-bold">
-                            ${ticket.description}
-                        </span>
-                        <div class="flex items-center gap-2 mt-1">
-                            <span class="text-sm line-through opacity-50">
-                                ${ticket.price}
-                            </span>
-                            <!-- Assuming you have a discount percentage in your API response -->
-                            <span class="discount-percent">
-                                save ${ticket.discount_percent}%
-                            </span>
-                        </div>
-                        <div class="mt-5 flex gap-2">
-                            <button class="button-primary">
-                                Buy Now
-                            </button>
-                        </div>
-                    </div>
+        const card = document.createElement('div');
+        card.innerHTML = `
+            <div class="popular__card">
+            <img src="https://source.unsplash.com/360x200?ticket" alt="popular hotel" />
+            <div class="popular__content">
+                <div class="popular__card__header">
+                <h4>${ticket.title}</h4>
+                <h4>${ticket.price}</h4>
                 </div>
+                <p>${ticket.description}</p>
+            </div>
             </div>
         `;
-        tableBody.appendChild(row);
+        tableBody.appendChild(card);  // Use 'card' instead of 'row'
     });
 }
 
-window.onload = getBackend;
+window.onload = getTicket;
