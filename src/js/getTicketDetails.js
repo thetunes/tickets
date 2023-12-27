@@ -60,7 +60,7 @@ function displayTicket(ticket) {
             </div> 
         </section>
         <div class="btn-container">
-            <a href="./buy.html?id=${idValue}">
+            <a href="buy.html?id=${idValue}">
                 <button id="buyBtn" class="btn-main">Place order</button>
             </a>    
         </div>
