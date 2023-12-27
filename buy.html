@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" class="m-0 p-0 box-border">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <title>Place Order • The Tunes</title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav__logo">The Tunes</div>
+      <ul class="nav__links">
+        <li class="link"><a href="/login">Login</a></li>
+      </ul>
+    </nav>
+    <div id="productTableBody">
+
+    </div>
+    <div class="btn-container">
+      <form>
+          <input id="itemId" value="${idValue}" hidden>
+          <button id="buyBtn" class="btn-main">Place order</button>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <div class="footer__bar">
+        Copyright © 2023 The Tunes
+      </div>
+    </footer>
+
+    <script src="src/js/createOrder.js" type="module"></script>
+  </body>
+</html>
