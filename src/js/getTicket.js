@@ -39,6 +39,9 @@ function displayTickets(tickets) {
                     <h4>${ticket.price}</h4>
                     </div>
                     <p>${ticket.description}</p>
+                    <a href="../buy.html?id=${ticket.id}">
+                        <button id="buyBtn" class="btn-home">Buy</button>
+                    </a>    
                 </div>
             </div>    
         </a>

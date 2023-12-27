@@ -43,21 +43,28 @@ function displayTicket(ticket) {
 
     const card = document.createElement('div');
     card.innerHTML = `
-        <h1 class="section__header">${idValue}</h1>
-        <h1 class="section__header">${ticket.title}</h1>
-        <div class="popular__grid text-white">
-            <h2>Price</h2>
-            <p>${ticket.price}</p>
+        <section class="section__container popular__container">
+            <h1 class="section__header">${idValue}</h1>
+            <h1 class="section__header">${ticket.title}</h1>
+            <div class="popular__grid text-white">
+                <h2>Price</h2>
+                <p>${ticket.price}</p>
+            </div>
+            <div class="popular__grid text-white">
+                <h2>Artist</h2>
+                <p>${ticket.artistid}.</p>
+            </div>
+            <div class="popular__grid text-white">
+                <h2>Description</h2>
+                <p>${ticket.description}</p>
+            </div> 
+        </section>
+        <div class="btn-container">
+            <a href="../buy.html?id=${idValue}">
+                <button id="buyBtn" class="btn-main">Place order</button>
+            </a>    
         </div>
-        <div class="popular__grid text-white">
-            <h2>Artist</h2>
-            <p>${ticket.artistid}.</p>
-        </div>
-        <div class="popular__grid text-white">
-            <h2>Description</h2>
-            <p>${ticket.description}</p>
-        </div> 
-    `;
+        `;
     tableBody.appendChild(card);
 }
 

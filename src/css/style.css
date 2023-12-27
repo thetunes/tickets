@@ -416,6 +416,17 @@ nav {
   font-size: 2vh;
 }
 
+.btn-home {
+  margin-top: 20px;
+  width: 100%;
+  border: none;
+  border-radius: 100px;
+  height: 5vh;
+  font-size: 2vh;
+  color: white;
+  background-color: #040D12;
+}
+
 .btn-container {
   text-align: center;
   padding-bottom: 35px;
