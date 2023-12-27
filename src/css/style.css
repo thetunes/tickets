@@ -96,7 +96,7 @@ nav {
 
 .header__content {
   max-width: 600px;
-  padding: 5rem 2rem;
+  padding: 10rem 2rem;
 }
 
 .header__content h1 {
@@ -402,4 +402,8 @@ nav {
   .footer__container {
     gap: 2rem;
   }
+}
+
+.text-white {
+  color: var(--white);
 }
