@@ -199,6 +199,7 @@ nav {
 }
 
 .popular__card {
+  position: relative;
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
@@ -207,6 +208,7 @@ nav {
 
 .popular__content {
   padding: 1rem;
+  height: 240px;
 }
 
 .popular__card__header {
@@ -222,6 +224,30 @@ nav {
   font-weight: 600;
   color: var(--text-dark);
 }
+
+.popular__content p {
+  color: var(--text-light);
+}
+
+.popular__card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.popular__card__header h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.popular__content p {
+  flex-grow: 1; /* This makes the description take up remaining space */
+  color: var(--text-light);
+}
+
 
 .popular__content p {
   color: var(--text-light);
@@ -416,9 +442,13 @@ nav {
   font-size: 2vh;
 }
 
+
 .btn-home {
-  margin-top: 20px;
-  width: 100%;
+  position: absolute;
+  bottom: 1rem; /* Adjust this value as needed for spacing */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
   border: none;
   border-radius: 100px;
   height: 5vh;
