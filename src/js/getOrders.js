@@ -82,11 +82,6 @@ function displayTickets(tickets) {
                     <p>${orderStatus}.</p>
                 </div>
             </section>
-            <div class="btn-container">
-                <a href="buy.html?id=${ticket.ticketid}">
-                    <button id="buyBtn" class="btn-main">Place order</button>
-                </a>    
-            </div>
             `;
             tableBody.appendChild(card);  // Use 'card' instead of 'row'
         });
