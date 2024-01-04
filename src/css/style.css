@@ -69,6 +69,7 @@ nav {
   font-weight: 500;
   color: var(--white);
   transition: 0.3s;
+  padding-left:20px;
 }
 
 .link a:hover {
