@@ -35,11 +35,8 @@ function uploadImage() {
         })
             .then(response => response.json())
             .then(data => {
-                // Handle the response from the server as needed
-                console.log('Upload successful:', data);
-
-                // Append the body with the "id" key and its value from the URL query
                 appendIdFromBody();
+                window.location.replace("success.html");
             })
             .catch(error => {
                 console.error('Error uploading image:', error);
