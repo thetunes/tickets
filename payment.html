@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | The tunes</title>
-    <link rel="stylesheet" href="src/css/main.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./tailwind.config.js"></script>
-  </head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | The tunes</title>
+  <link rel="stylesheet" href="src/css/main.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="./tailwind.config.js"></script>
+</head>
+
 <body>
-    <div id="hasphonenumber" class="w-full h-screen flex items-center justify-center">
-        <div class="w-80 bg-stone-950 rounded-3xl">
-            <div class="">
-              <div>
-                <img class="w-80  h-auto" src="assets/images/payqr.png" alt="">
-              </div>
-              <div class="my-6 text-center">
-                <p class="font-extrabold px-8 pt-8 text-xl">Scan QR Code to complete payment</p> 
-                <p class="px-4 pt-4 text-sm">We'll confirm your paymnet in a second!</p> 
-              </div>
-              <div class="pb-12">
-                    <p class="text-center text-white text-xs">
-                        &copy;2023 The Tunes. All rights reserved.
-                    </p>
-                </div>
+  <div id="hasphonenumber" class="w-full h-screen flex items-center justify-center">
+    <div class="w-80 bg-stone-950 rounded-3xl">
+      <div class="">
+
+        <div class="flex items-center justify-center w-full rounded-t-4xl">
+          <label for="imageInput"
+            class="flex flex-col items-center justify-center w-full h-64 rounded-lg cursor-pointer bg-stone-50 dark:hover:bg-bray-800 dark:bg-stone-900 hover:bg-stone-800">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <svg class="w-8 h-8 mb-4 text-stone-500 dark:text-stone-400" aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+              </svg>
+              <p class="mb-2 text-sm text-stone-500 dark:text-stone-400"><span class="font-semibold">Click to
+                  upload</span> or drag and drop</p>
+              <p class="text-xs text-stone-500 dark:text-stone-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
             </div>
+            <input id="imageInput" type="file" class="hidden" />
+          </label>
         </div>
+
+        <div class="shadow-md rounded px-8 pt-10 pb-4">
+          <div class="flex items-center justify-between">
+            <button onclick="uploadImage()"
+              class="bg-white hover:bg-stone-100 text-stone-950 font-bold py-2 px-4 rounded-full focus:outline-none focus:shadow-outline w-full"
+              type="button">
+              Upload
+            </button>
+          </div>
+        </div>
+        <div class="my-6 text-center">
+          <p class="font-extrabold px-8 text-xl">Upload payment receipt</p>
+          <p class="px-4 pt-4 text-sm">We your payment receipt to confirm your purchase.</p>
+        </div>
+        <div class="pb-12">
+          <p class="text-center text-white text-xs">
+            &copy;2023 The Tunes. All rights reserved.
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+  <script src="src/js/uploadPayment.js"></script>
 </body>
+
 </html>
