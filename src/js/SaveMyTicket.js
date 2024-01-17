@@ -145,6 +145,7 @@ function displayDetail(order) {
 
 function loadData() {
     getDetail();
+    window.print();
 }
 
 window.onload = loadData;
