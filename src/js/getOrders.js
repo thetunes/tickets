@@ -113,7 +113,7 @@ function displayTickets(tickets) {
                     </div>
                     <div class="popular__grid text-white">
                         <h2>Status</h2>
-                        <p>Waiting for payment</p>
+                        <p>Payment confirmation in progress</p>
                     </div>
                     <div class="btn-container">
                     <a href="payment.html?id=${ticket.id}">
