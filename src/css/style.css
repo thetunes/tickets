@@ -462,3 +462,7 @@ nav {
   text-align: center;
   padding-bottom: 35px;
 }
+
+.pt-8 {
+  margin-top: 28px;
+}
