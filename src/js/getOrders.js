@@ -74,6 +74,11 @@ function displayTickets(tickets) {
                         <h2>Status</h2>
                         <p>Completed</p>
                     </div>
+                    <div class="btn-container">
+                    <a href="ticket.html?id=${ticket.id}">
+                        <button id="buyBtn" class="btn-main pt-8">Print Ticket</button>
+                    </a>    
+                    </div>
                 </section>
                 `;
             } else if (ticket.status === "false") {
@@ -114,7 +119,7 @@ function displayTickets(tickets) {
                     <a href="payment.html?id=${ticket.id}">
                         <button id="buyBtn" class="btn-main pt-8">Upload Payment Receipt</button>
                     </a>    
-                </div>
+                    </div>
                 </section>
                 `;
             }
