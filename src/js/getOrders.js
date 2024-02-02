@@ -58,6 +58,14 @@ function displayTickets(tickets) {
     getUserId().then(userID => { // Use getUserId as a Promise
         tickets.filter(ticket => ticket.userid === userID).forEach(ticket => {
             const card = document.createElement('div');
+            const formattedDate = new Date(ticket.CreatedAt).toLocaleString('en-US', {
+                month: 'long',
+                day: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+
             if (ticket.status === "true") {
                 card.innerHTML = `
                 <section class="section__container popular__container">
@@ -68,7 +76,7 @@ function displayTickets(tickets) {
                     </div>
                     <div class="popular__grid text-white">
                         <h2>Ordered at</h2>
-                        <p>${ticket.CreatedAt}</p>
+                        <p>${formattedDate}</p>
                     </div>
                     <div class="popular__grid text-white">
                         <h2>Status</h2>
@@ -91,7 +99,7 @@ function displayTickets(tickets) {
                     </div>
                     <div class="popular__grid text-white">
                         <h2>Ordered at</h2>
-                        <p>${ticket.CreatedAt}</p>
+                        <p>${formattedDate}</p>
                     </div>
                     <div class="popular__grid text-white">
                         <h2>Status</h2>
@@ -109,7 +117,7 @@ function displayTickets(tickets) {
                     </div>
                     <div class="popular__grid text-white">
                         <h2>Ordered at</h2>
-                        <p>${ticket.CreatedAt}</p>
+                        <p>${formattedDate}</p>
                     </div>
                     <div class="popular__grid text-white">
                         <h2>Status</h2>
@@ -123,7 +131,7 @@ function displayTickets(tickets) {
                 </section>
                 `;
             }
-            tableBody.appendChild(card);  // Use 'card' instead of 'row'
+            tableBody.appendChild(card);
         });
     });
 }
