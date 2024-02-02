@@ -29,7 +29,7 @@ function uploadImage() {
         formData.append('id', idValue);
 
         // Replace 'YOUR_API_ENDPOINT' with the actual endpoint of your REST API
-        fetch('https://eclipse.herobuxx.me/api/order/upload/payment', {
+        fetch('http://34.128.102.98/api/order/upload/payment', {
             method: 'POST',
             body: formData,
         })

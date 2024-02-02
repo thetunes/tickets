@@ -10,7 +10,7 @@ function getUserId() {
         redirect: 'follow'
     };
 
-    return fetch('https://eclipse.herobuxx.me/api/auth/id', requestOptions)
+    return fetch('http://34.128.102.98/api/auth/id', requestOptions)
         .then(response => response.json())
         .then(data => {
             if (data.status === "success") {
@@ -33,7 +33,7 @@ function getTicket() {
         redirect: 'follow'
     };
 
-    fetch('https://eclipse.herobuxx.me/api/order', requestOptions)
+    fetch('http://34.128.102.98/api/order', requestOptions)
         .then(response => {
             console.log('Raw Response:', response);
             return response.json();

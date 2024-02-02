@@ -7,7 +7,7 @@ function getTicket() {
         redirect: 'follow'
     };
 
-    fetch('https://eclipse.herobuxx.me/api/ticket', requestOptions)
+    fetch('http://34.128.102.98/api/ticket', requestOptions)
         .then(response => {
             console.log('Raw Response:', response);
             return response.json();
