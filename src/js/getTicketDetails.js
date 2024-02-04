@@ -42,6 +42,14 @@ function displayTicket(ticket) {
     tableBody.innerHTML = '';
 
     const card = document.createElement('div');
+    const formattedDate = new Date(ticket.date).toLocaleString('en-US', {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
     card.innerHTML = `
         <section class="section__container popular__container">
             <h1 class="section__header">${idValue}</h1>
@@ -55,10 +63,18 @@ function displayTicket(ticket) {
                 <p>${ticket.artistid}.</p>
             </div>
             <div class="popular__grid text-white">
+                <h2>Date</h2>
+                <p>${formattedDate}.</p>
+            </div>
+            <div class="popular__grid text-white">
                 <h2>Description</h2>
                 <p>${ticket.description}</p>
             </div> 
-        </section>
+            <div class="popular__grid text-white">
+                <h2>Location</h2>
+                <p>${ticket.location}</p>
+            </div> 
+            </section>
         <div class="btn-container">
             <a href="buy.html?id=${idValue}">
                 <button id="buyBtn" class="btn-main">Place order</button>
