@@ -104,8 +104,8 @@ function displayTickets(tickets) {
     let totalToPay = 0;
 
     getUserId().then(userID => {
-        // Array to store all promises for fetching ticket prices
-        const pricePromises = [];
+        // Array to store all promises for fetching ticket details
+        const ticketPromises = [];
 
         tickets.filter(ticket => ticket.userid === userID).forEach(ticket => {
             const formattedDate = new Date(ticket.CreatedAt).toLocaleString('en-US', {
@@ -117,43 +117,45 @@ function displayTickets(tickets) {
             });
 
             if (ticket.status === "") {
-                // Fetch the ticket price based on the ticket ID and push the promise to the array
-                const pricePromise = getTicketPrice(ticket.ticketid)
-                    .then(price => {
-                        totalToPay += price;
+                // Fetch the ticket details based on the ticket ID and push the promise to the array
+                const ticketPromise = Promise.all([
+                    getTicketTitle(ticket.ticketid),
+                    getTicketPrice(ticket.ticketid)
+                ]).then(([title, price]) => {
+                    totalToPay += price;
 
-                        const card = document.createElement('div');
-                        card.innerHTML = `
-                            <section class="section__container popular__container">
-                                <h1 class="section__header">${ticket.ticketid}</h1>
-                                <div class="popular__grid text-white">
-                                    <h2>Ticket ID</h2>
-                                    <p>${ticket.ticketid}</p>
-                                </div>
-                                <div class="popular__grid text-white">
-                                    <h2>Ordered at</h2>
-                                    <p>${formattedDate}</p>
-                                </div>
-                                <div class="popular__grid text-white">
-                                    <h2>Price</h2>
-                                    <p>${price}</p>
-                                </div>
-                                <div class="btn-container">
-                                    <a href="payment.html?id=${ticket.id}">
-                                        <button id="buyBtn" class="btn-main pt-8">Upload Payment Receipt</button>
-                                    </a>    
-                                </div>
-                            </section>
-                        `;
-                        tableBody.appendChild(card);
-                    });
+                    const card = document.createElement('div');
+                    card.innerHTML = `
+                        <section class="section__container popular__container">
+                            <h1 class="section__header">${title}</h1>
+                            <div class="popular__grid text-white">
+                                <h2>Ticket ID</h2>
+                                <p>${ticket.ticketid}</p>
+                            </div>
+                            <div class="popular__grid text-white">
+                                <h2>Ordered at</h2>
+                                <p>${formattedDate}</p>
+                            </div>
+                            <div class="popular__grid text-white">
+                                <h2>Price</h2>
+                                <p>${price}</p>
+                            </div>
+                            <div class="btn-container">
+                                <a href="payment.html?id=${ticket.id}">
+                                    <button id="buyBtn" class="btn-main pt-8">Upload Payment Receipt</button>
+                                </a>    
+                            </div>
+                        </section>
+                    `;
+                    tableBody.appendChild(card);
+                });
 
-                pricePromises.push(pricePromise);
+                ticketPromises.push(ticketPromise);
             }
         });
 
         // Wait for all promises to be resolved before displaying the total
-        Promise.all(pricePromises).then(() => {
+        Promise.all(ticketPromises).then(() => {
             // Update the value of the Total Order span
             const totalOrderSpan = document.getElementById('price-total');
             if (totalOrderSpan) {
@@ -163,4 +165,5 @@ function displayTickets(tickets) {
         });
     });
 }
+
 window.onload = getTicket;
