@@ -466,3 +466,23 @@ nav {
 .pt-8 {
   margin-top: 28px;
 }
+
+.float {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: rgba(231, 239, 245, 0.2); /* Adjust the alpha value for transparency */
+  color: #eff2f5;
+  padding-top: 22px;
+  padding-bottom: 22px;
+  padding-left: 125px;
+  padding-right: 22px;
+  border-radius: 1000px;
+  width: 95%;
+  backdrop-filter: blur(10px); /* Adjust the blur value as needed */
+}
+
+.price-total{
+  font-weight: bold;
+  text-align: center;
+}

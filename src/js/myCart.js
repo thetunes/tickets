@@ -154,6 +154,11 @@ function displayTickets(tickets) {
 
         // Wait for all promises to be resolved before displaying the total
         Promise.all(pricePromises).then(() => {
+            // Update the value of the Total Order span
+            const totalOrderSpan = document.getElementById('price-total');
+            if (totalOrderSpan) {
+                totalOrderSpan.textContent = `Total Order: $${totalToPay}`;
+            }
             console.log('Total to pay:', totalToPay);
         });
     });
