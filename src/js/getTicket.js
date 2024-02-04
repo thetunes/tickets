@@ -40,7 +40,7 @@ function displayTickets(tickets) {
                     <div class="popular__content">
                         <div class="popular__card__header">
                         <h4>${ticket.title}</h4>
-                        <h4>${ticket.price}</h4>
+                        <h4>$ ${ticket.price}</h4>
                         </div>
                         <p>${ticket.description}</p>
                         <a href="buy.html?id=${ticket.id}">

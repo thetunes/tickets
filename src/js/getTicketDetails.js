@@ -48,7 +48,7 @@ function displayTicket(ticket) {
             <h1 class="section__header">${ticket.title}</h1>
             <div class="popular__grid text-white">
                 <h2>Price</h2>
-                <p>${ticket.price}</p>
+                <p>$${ticket.price}</p>
             </div>
             <div class="popular__grid text-white">
                 <h2>Artist</h2>
