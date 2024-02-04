@@ -77,7 +77,7 @@ function showProtectedNav() {
     `;
   } else {
     navLink.innerHTML = `
-    <a href="my_order.html" class="icon-text-container">
+    <a href="cart.html" class="icon-text-container">
         <span class="material-icons md-24">shopping_cart</span> &nbsp;&nbsp;Cart
     </a>
     <a href="my_order.html" class="icon-text-container">
