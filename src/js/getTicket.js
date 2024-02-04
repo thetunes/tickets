@@ -71,12 +71,21 @@ function showProtectedNav() {
 
   if (token === "") {
     navLink.innerHTML = `
-    <a href="/login">Login</a>
+    <a href="/login" class="icon-text-container">
+        <span class="material-icons md-24">login</span>&nbsp;&nbsp;Login
+    </a>
     `;
   } else {
     navLink.innerHTML = `
-    <a href="my_order.html">My Orders</a>
-    <a href="#" id="logoutLink">Log Out</a>
+    <a href="my_order.html" class="icon-text-container">
+        <span class="material-icons md-24">shopping_cart</span> &nbsp;&nbsp;Cart
+    </a>
+    <a href="my_order.html" class="icon-text-container">
+        <span class="material-icons md-24">local_activity</span>&nbsp;&nbsp;Orders
+    </a>
+    <a href="#" id="logoutLink" class="icon-text-container">
+        <span class="material-icons md-24">logout</span>&nbsp;&nbsp;Log Out
+    </a>
     `;
   }
 

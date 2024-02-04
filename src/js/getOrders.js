@@ -26,6 +26,50 @@ function getUserId() {
         });
 }
 
+function getTicketTitle(ticketId) {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    return fetch(`http://34.128.102.98/api/ticket/${ticketId}`, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                return data.data.title;
+            } else {
+                console.error('API Error:', data.message);
+                return null;
+            }
+        })
+        .catch(error => {
+            console.error('Fetch Error:', error);
+            return null;
+        });
+}
+
+function getTicketPrice(ticketId) {
+    var requestOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+
+    return fetch(`http://34.128.102.98/api/ticket/${ticketId}`, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                return data.data.price;
+            } else {
+                console.error('API Error:', data.message);
+                return null;
+            }
+        })
+        .catch(error => {
+            console.error('Fetch Error:', error);
+            return null;
+        });
+}
+
 function getTicket() {
     var userID = getUserId();
     var requestOptions = {
@@ -55,83 +99,85 @@ function displayTickets(tickets) {
     const tableBody = document.getElementById('productTableBody');
     tableBody.innerHTML = '';
 
-    getUserId().then(userID => { // Use getUserId as a Promise
-        tickets.filter(ticket => ticket.userid === userID).forEach(ticket => {
-            const card = document.createElement('div');
-            const formattedDate = new Date(ticket.CreatedAt).toLocaleString('en-US', {
-                month: 'long',
-                day: '2-digit',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
+    getUserId().then(userID => {
+        // Use Promise.all to fetch title and price for each ticket in parallel
+        const ticketPromises = tickets
+            .filter(ticket => ticket.userid === userID)
+            .map(ticket => {
+                const titlePromise = getTicketTitle(ticket.ticketid);
+                const pricePromise = getTicketPrice(ticket.ticketid);
+
+                return Promise.all([titlePromise, pricePromise])
+                    .then(([title, price]) => {
+                        const card = document.createElement('div');
+                        const formattedDate = new Date(ticket.CreatedAt).toLocaleString('en-US', {
+                            month: 'long',
+                            day: '2-digit',
+                            year: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+
+                        if (ticket.status === "true") {
+                            card.innerHTML = `
+                            <section class="section__container popular__container">
+                                <h1 class="section__header">${title}</h1>
+                                <div class="popular__grid text-white">
+                                    <h2>Ticket ID</h2>
+                                    <p>${ticket.ticketid}</p>
+                                </div>
+                                <div class="popular__grid text-white">
+                                    <h2>Price</h2>
+                                    <p>${price}</p>
+                                </div>
+                                <div class="popular__grid text-white">
+                                    <h2>Ordered at</h2>
+                                    <p>${formattedDate}</p>
+                                </div>
+                                <div class="popular__grid text-white">
+                                    <h2>Status</h2>
+                                    <p>Completed</p>
+                                </div>
+                                <div class="btn-container">
+                                    <a href="ticket.html?id=${ticket.id}">
+                                        <button id="buyBtn" class="btn-main pt-8">Print Ticket</button>
+                                    </a>    
+                                </div>
+                            </section>
+                            `;
+                        } else if (ticket.status === "false") {
+                            card.innerHTML = `
+                            <section class="section__container popular__container">
+                                <h1 class="section__header">${title}</h1>
+                                <div class="popular__grid text-white">
+                                    <h2>Ticket ID</h2>
+                                    <p>${ticket.ticketid}</p>
+                                </div>
+                                <div class="popular__grid text-white">
+                                    <h2>Price</h2>
+                                    <p>${price}</p>
+                                </div>
+                                <div class="popular__grid text-white">
+                                    <h2>Ordered at</h2>
+                                    <p>${formattedDate}</p>
+                                </div>
+                                <div class="popular__grid text-white">
+                                    <h2>Status</h2>
+                                    <p>Cancelled</p>
+                                </div>
+                            </section>
+                            `;
+                        }
+                        tableBody.appendChild(card);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching title and price:', error);
+                    });
             });
 
-            if (ticket.status === "true") {
-                card.innerHTML = `
-                <section class="section__container popular__container">
-                    <h1 class="section__header">${ticket.ticketid}</h1>
-                    <div class="popular__grid text-white">
-                        <h2>Ticket ID</h2>
-                        <p>${ticket.ticketid}</p>
-                    </div>
-                    <div class="popular__grid text-white">
-                        <h2>Ordered at</h2>
-                        <p>${formattedDate}</p>
-                    </div>
-                    <div class="popular__grid text-white">
-                        <h2>Status</h2>
-                        <p>Completed</p>
-                    </div>
-                    <div class="btn-container">
-                    <a href="ticket.html?id=${ticket.id}">
-                        <button id="buyBtn" class="btn-main pt-8">Print Ticket</button>
-                    </a>    
-                    </div>
-                </section>
-                `;
-            } else if (ticket.status === "false") {
-                card.innerHTML = `
-                <section class="section__container popular__container">
-                    <h1 class="section__header">${ticket.ticketid}</h1>
-                    <div class="popular__grid text-white">
-                        <h2>Ticket ID</h2>
-                        <p>${ticket.ticketid}</p>
-                    </div>
-                    <div class="popular__grid text-white">
-                        <h2>Ordered at</h2>
-                        <p>${formattedDate}</p>
-                    </div>
-                    <div class="popular__grid text-white">
-                        <h2>Status</h2>
-                        <p>Cancelled</p>
-                    </div>
-                </section>
-                `;
-            } else {
-                card.innerHTML = `
-                <section class="section__container popular__container">
-                    <h1 class="section__header">${ticket.ticketid}</h1>
-                    <div class="popular__grid text-white">
-                        <h2>Ticket ID</h2>
-                        <p>${ticket.ticketid}</p>
-                    </div>
-                    <div class="popular__grid text-white">
-                        <h2>Ordered at</h2>
-                        <p>${formattedDate}</p>
-                    </div>
-                    <div class="popular__grid text-white">
-                        <h2>Status</h2>
-                        <p>Payment confirmation in progress</p>
-                    </div>
-                    <div class="btn-container">
-                    <a href="payment.html?id=${ticket.id}">
-                        <button id="buyBtn" class="btn-main pt-8">Upload Payment Receipt</button>
-                    </a>    
-                    </div>
-                </section>
-                `;
-            }
-            tableBody.appendChild(card);
+        // Wait for all promises to be resolved before displaying the total
+        Promise.all(ticketPromises).then(() => {
+            // Additional actions after displaying tickets, if needed
         });
     });
 }
